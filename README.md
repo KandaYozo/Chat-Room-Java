@@ -1,7 +1,9 @@
 # Chat-Room-Java
 a single chat room with multi users, implementation is done using sockets and threading in java
 #####################################################################
+
 #editing notes
+
 #####################################################################
 1) all inlcudes must exist or else errors will need to be handled manually
 2) make sure that the closing part of server+client are always there so the cpu is not consumed
@@ -25,5 +27,6 @@ a single chat room with multi users, implementation is done using sockets and th
   c) git commit -m "discription": to commit your update, please write a short comment about what you modified
   
   d) git push
+  
 #######################################################################
 please note: this is not the best version due to that this is the first time we use sockets and threading feel free to modify or give an advice about any part of the code
