@@ -11,9 +11,13 @@ a single chat room with multi users, implementation is done using sockets and th
 4) comment as much as possible when writing any line of code, because this is the first time we are using sockets so we need to help each other to understand the functions we are implementing
 5) if you used a site to help you with implementing or importing anything please add the link to that page in the code file you used your import in.
 6) try to use eclipse when editing because we will be working with eclipse this time
+
 ######################################################################
+
 #git hub notes
+
 ######################################################################
+
 1) to clone repository use git bash command:
    git clone <link>
 2) if you want to get updated version use the bash command:
@@ -29,4 +33,5 @@ a single chat room with multi users, implementation is done using sockets and th
   d) git push
   
 #######################################################################
+
 please note: this is not the best version due to that this is the first time we use sockets and threading feel free to modify or give an advice about any part of the code
