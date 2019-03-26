@@ -23,5 +23,12 @@ A single chat room with multi users, implementation is done using sockets and th
   3. `git commit -m "discription"`: to commit your update, please write a short comment about what you modified
   4. `git push`
 
+## Running on IntelliJ
+
+	1. Navigate to `File → New → Project` from Existing Sources
+	2. Select your Eclipse project directory
+	3. When the Import Project wizard opens, select the `Create project from existing sources` option
+	4. Follow the on-screen instructions to continue
+
 ### Please note
 This is not the best version due to that this is the first time we use sockets and threading feel free to modify or give an advice about any part of the code
