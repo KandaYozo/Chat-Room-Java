@@ -1,6 +1,8 @@
 # Chat-Room-Java
 A single chat room with multi users, implementation is done using sockets and threading in Java
 
+This project is part of the CMPN306 : Advanced Programming Techniques course at the Faculty of Engineering Cairo University, Spring 2019
+
 ## Editing notes
 
 1. All inlcudes must exist or else errors will need to be handled manually
