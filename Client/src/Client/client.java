@@ -10,7 +10,7 @@ import java.io.DataOutputStream;
 //////////////////////////////////////
 import java.io.IOException;
 import java.net.Socket;//this is the socket package
-/*dont under any circumstance remove this import XD*/
+/* Don't under any circumstance remove this import*/
 import java.net.UnknownHostException;
 ///////////////////////////////////////
 //our scanner import
