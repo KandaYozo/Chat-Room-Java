@@ -5,76 +5,32 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class server {
 
-    ServerSocket ss;
-    Socket s;
-    DataInputStream din;
-    DataOutputStream dout;
+	ServerSocket ss;
+	boolean quite=false;
+	ArrayList<MultiServerConnection> OurDomainsConnections=new ArrayList<MultiServerConnection>();
+	
+	public static void main(String[] args) {
+		new server();
 
-    public static void main(String[] args) {
-        new server();
-
-    }
-
-    public server() {
-        try {
-            ss = new ServerSocket(3333);
-            s = ss.accept();//will block until there is another socket connection
-            din = new DataInputStream(s.getInputStream());
-            dout = new DataOutputStream(s.getOutputStream());
-            listenD();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }//make sure its bloody same with client it took my 15 min to realize that XD
-    }
-
-    public void listenD() {
-        while (true) {
-            try {
-                while (din.available() == 0) {
-                    try {
-                        Thread.sleep(1);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-                String datain = din.readUTF();
-
-                dout.writeUTF(datain + " data returned from server,all good for second phase");
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                break;//if client is Disconnected
-            }
-        }
-
-        try {
-            din.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            dout.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            s.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            ss.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+	}
+	public server() {
+		try {
+			//TODO use method to take this as an input from user)
+			ss=new ServerSocket(3333);//here we are using connection 3333 (change as you want
+			while(!quite)
+			{
+				Socket s=ss.accept();//when a connection to the domain is found we accept it
+				MultiServerConnection OurConnection = new MultiServerConnection(s,this);
+				OurConnection.start();//Start Thread
+				OurDomainsConnections.add(OurConnection);//add connection to our Domain Connection
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//make sure its bloody same with client it took my 15 min to realize that XD
+	}
 }
