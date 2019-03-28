@@ -23,6 +23,7 @@ public class MultiServerConnection extends Thread {
 	public void ServerOutClientIn(String OutText)
 	{
 		try {
+			long ThreadID=this.getId();
 			dout.writeUTF(OutText);
 			dout.flush();//this is because of a buffer error :<
 		} catch (IOException e) {
