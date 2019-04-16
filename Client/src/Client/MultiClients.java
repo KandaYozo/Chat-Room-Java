@@ -11,23 +11,29 @@ public class MultiClients extends Thread {
 	DataInputStream din;
 	DataOutputStream dout;
 	boolean quite=false;
+	public ClientData c;
 	
 	public MultiClients(Socket OurMultiSocket, client Clients)
 	{
 		s=OurMultiSocket;
+		c=new ClientData();
 	}
 	public void ClientOutServerIn(String Text)
 	{
 		//write the line from console to server
 		try {
-			dout.writeUTF(this.getName()+": "+Text);
+			dout.writeUTF(c.GetChannel()+"="+this.getName()+": "+Text);
 			dout.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
-	
+	public void SetClient(String channel,String Name)
+	{
+		c.SetName(Name);
+		c.SetChannel(channel);
+	}
 	public void run()
 	{
 		try {
@@ -48,7 +54,9 @@ public class MultiClients extends Thread {
 					//if there is something just show it on console
 					//and then go back and do the same
 					String reply=din.readUTF();
-					System.out.println(reply);
+					String Chan=ExtractChannel(reply);
+					PrintReply(Chan,reply);
+					//System.out.println(reply);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -85,6 +93,38 @@ public class MultiClients extends Thread {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	public String ExtractChannel(String X)
+	{
+		String[]Y=X.split("=");
+		return Y[0];
+	}
+	public void PrintReply(String Chan,String Rep)
+	{
+		if(c.GetChannel().equals(Chan))
+		{
+			String []Y=Rep.split("=");
+			System.out.println(Y[1]);
+		}
+		
+	}
+	class ClientData
+	{
+		public String ClientName;
+		public String channel;
+		
+		public void SetChannel(String Chan)
+		{
+			channel=Chan;
+		}
+		public void SetName(String name)
+		{
+			ClientName=name;
+		}
+		public String GetChannel()
+		{
+			return channel;
 		}
 	}
 	

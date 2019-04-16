@@ -36,6 +36,7 @@ public class client {
 			Scanner UserThreadName=new Scanner(System.in);
 			String UserName=UserThreadName.nextLine();
 			ClientThread.setName(UserName);
+			ClientThread.SetClient("channel0",UserName);
 			ClientThread.start();
 			for(int i = 0; i < 50; i++)
 			    System.out.print("\n"); 
@@ -73,7 +74,15 @@ public class client {
 			{
 				break;
 			}
-			ClientThread.ClientOutServerIn(input);
+			if(input.toLowerCase().equals("change channel"))
+			{
+				input=console.nextLine();
+				ClientThread.c.SetChannel(input);
+			}
+			else
+			{
+				ClientThread.ClientOutServerIn(input);
+			}
 		}
 		ClientThread.CloseClient();
 	}
